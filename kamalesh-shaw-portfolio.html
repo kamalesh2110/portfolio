@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kamalesh Shaw — Senior Software Engineer, Frontend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0F14;
+    --panel:#10151C;
+    --panel-alt:#141B24;
+    --border:#222B36;
+    --border-strong:#31404F;
+    --text:#E7EDF3;
+    --text-muted:#8A96A4;
+    --text-dim:#5A6470;
+    --green:#35D07F;
+    --amber:#F5A524;
+    --green-dim:rgba(53,208,127,0.12);
+    --amber-dim:rgba(245,165,36,0.12);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 42px 42px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .display{ font-family:'Chakra Petch', sans-serif; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 28px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,15,20,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:0 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Chakra Petch', sans-serif;
+    font-weight:600; font-size:15px; letter-spacing:0.5px;
+  }
+  .logo-mark{
+    width:30px; height:30px; border:1px solid var(--border-strong);
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; color:var(--green); border-radius:3px;
+    background:var(--panel);
+  }
+  .nav-links{ display:flex; gap:28px; align-items:center; }
+  .nav-links a{
+    font-size:13px; color:var(--text-muted);
+    letter-spacing:0.3px;
+    transition:color 0.2s ease;
+    position:relative;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--text); }
+  .status-chip{
+    display:flex; align-items:center; gap:7px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px; color:var(--green);
+    border:1px solid rgba(53,208,127,0.3);
+    background:var(--green-dim);
+    padding:5px 10px; border-radius:20px;
+    letter-spacing:0.5px;
+  }
+  .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 0 0 rgba(53,208,127,0.6);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(53,208,127,0.55); }
+    70%{ box-shadow:0 0 0 7px rgba(53,208,127,0); }
+    100%{ box-shadow:0 0 0 0 rgba(53,208,127,0); }
+  }
+  .nav-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 64px;
+    border-bottom:1px solid var(--border);
+    overflow:hidden;
+  }
+  .scanline{
+    position:absolute; left:0; right:0; height:120px;
+    background:linear-gradient(to bottom, transparent, rgba(53,208,127,0.05), transparent);
+    animation:scan 7s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes scan{
+    0%{ top:-120px; }
+    100%{ top:100%; }
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; color:var(--amber);
+    letter-spacing:1.5px; text-transform:uppercase;
+    margin-bottom:22px;
+    border-left:2px solid var(--amber);
+    padding-left:10px;
+  }
+  .hero h1{
+    font-family:'Chakra Petch', sans-serif;
+    font-weight:700;
+    font-size:clamp(38px, 6vw, 64px);
+    line-height:1.05;
+    letter-spacing:-0.5px;
+    margin-bottom:14px;
+  }
+  .hero .role{
+    font-family:'Chakra Petch', sans-serif;
+    font-size:clamp(16px, 2vw, 20px);
+    color:var(--text-muted);
+    font-weight:500;
+    margin-bottom:26px;
+  }
+  .hero .role span{ color:var(--green); }
+  .hero p.lede{
+    max-width:620px;
+    color:var(--text-muted);
+    font-size:15.5px;
+    margin-bottom:40px;
+  }
+  .hero-actions{
+    display:flex; gap:14px; flex-wrap:wrap;
+    margin-bottom:56px;
+  }
+  .btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    padding:12px 20px;
+    border-radius:4px;
+    letter-spacing:0.3px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:all 0.2s ease;
+    border:1px solid var(--border-strong);
+  }
+  .btn-primary{
+    background:var(--green);
+    color:#06110B;
+    border-color:var(--green);
+    font-weight:600;
+  }
+  .btn-primary:hover{ background:#4adf90; transform:translateY(-1px); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--text);
+  }
+  .btn-ghost:hover{ border-color:var(--text-muted); transform:translateY(-1px); }
+
+  .telemetry{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    border:1px solid var(--border);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--panel);
+  }
+  .telemetry .cell{
+    padding:20px 18px;
+    border-right:1px solid var(--border);
+  }
+  .telemetry .cell:last-child{ border-right:none; }
+  .telemetry .value{
+    font-family:'Chakra Petch', sans-serif;
+    font-size:28px; font-weight:700;
+    color:var(--text);
+    display:flex; align-items:baseline; gap:2px;
+  }
+  .telemetry .value .unit{
+    font-size:13px; color:var(--green); font-weight:600; margin-left:2px;
+  }
+  .telemetry .label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px; color:var(--text-dim);
+    letter-spacing:0.8px; text-transform:uppercase;
+    margin-top:6px;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:88px 0; border-bottom:1px solid var(--border); position:relative; }
+  .sec-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:40px;
+  }
+  .sec-index{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; color:var(--text-dim);
+  }
+  .sec-title{
+    font-family:'Chakra Petch', sans-serif;
+    font-size:28px; font-weight:600;
+    letter-spacing:-0.3px;
+  }
+  .sec-line{
+    flex:1; height:1px; background:var(--border-strong);
+    margin-left:4px;
+  }
+
+  .reveal{
+    opacity:0; transform:translateY(18px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- PROFILE ---------- */
+  .terminal{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:28px 30px;
+  }
+  .terminal .bar{
+    display:flex; gap:6px; margin-bottom:20px;
+  }
+  .terminal .bar span{
+    width:9px; height:9px; border-radius:50%;
+    background:var(--border-strong);
+  }
+  .terminal p{
+    font-size:15px; color:var(--text-muted);
+    margin-bottom:14px;
+    padding-left:20px; position:relative;
+  }
+  .terminal p::before{
+    content:'>'; position:absolute; left:0; color:var(--green);
+    font-family:'JetBrains Mono', monospace;
+  }
+  .terminal p:last-child{ margin-bottom:0; }
+  .terminal p b{ color:var(--text); font-weight:600; }
+  .cursor{
+    display:inline-block; width:7px; height:14px; background:var(--green);
+    vertical-align:middle; margin-left:4px;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- COMPETENCIES ---------- */
+  .tag-grid{
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    padding:9px 14px;
+    border:1px solid var(--border-strong);
+    border-radius:4px;
+    color:var(--text-muted);
+    background:var(--panel-alt);
+    transition:all 0.2s ease;
+  }
+  .tag:hover{ border-color:var(--amber); color:var(--amber); }
+
+  /* ---------- STACK ---------- */
+  .stack-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .stack-panel{ background:var(--panel); padding:24px; }
+  .stack-panel h4{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px; letter-spacing:1px; text-transform:uppercase;
+    color:var(--green); margin-bottom:16px;
+  }
+  .stack-panel ul{ list-style:none; }
+  .stack-panel li{
+    font-size:14px; color:var(--text-muted);
+    padding:6px 0; border-top:1px dashed var(--border);
+  }
+  .stack-panel li:first-child{ border-top:none; }
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline{ position:relative; }
+  .tl-item{
+    position:relative;
+    padding-left:34px;
+    padding-bottom:52px;
+    border-left:1px solid var(--border-strong);
+    margin-left:6px;
+  }
+  .tl-item:last-child{ padding-bottom:0; border-left:1px solid transparent; }
+  .tl-dot{
+    position:absolute; left:-6px; top:2px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--green);
+  }
+  .tl-head{
+    display:flex; flex-wrap:wrap; align-items:baseline;
+    gap:10px 16px; margin-bottom:6px;
+  }
+  .tl-role{
+    font-family:'Chakra Petch', sans-serif;
+    font-size:19px; font-weight:600;
+  }
+  .tl-date{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; color:var(--amber);
+    letter-spacing:0.3px;
+  }
+  .tl-company{
+    font-size:14px; color:var(--text-muted); margin-bottom:16px;
+  }
+  .tl-company b{ color:var(--text); }
+
+  .proj{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:22px 24px;
+    margin-bottom:16px;
+  }
+  .proj:last-child{ margin-bottom:0; }
+  .proj-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:8px; margin-bottom:4px;
+  }
+  .proj-name{ font-weight:600; font-size:15px; color:var(--text); }
+  .proj-date{ font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--text-dim); }
+  .proj-tech{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px; color:var(--text-dim);
+    margin-bottom:14px;
+  }
+  .proj ul{ padding-left:18px; }
+  .proj li{
+    font-size:14px; color:var(--text-muted);
+    margin-bottom:8px;
+  }
+  .proj li::marker{ color:var(--green); }
+
+  .highlights{
+    margin-top:16px;
+    border-top:1px solid var(--border);
+    padding-top:14px;
+  }
+  .highlights .h-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px; letter-spacing:1px; text-transform:uppercase;
+    color:var(--amber); margin-bottom:10px;
+  }
+  .highlights li{ color:var(--text-muted); font-size:14px; margin-bottom:6px; }
+  .highlights li::marker{ color:var(--amber); }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-card{
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:6px; padding:26px 28px; flex-wrap:wrap; gap:14px;
+  }
+  .edu-card .deg{ font-family:'Chakra Petch', sans-serif; font-size:19px; font-weight:600; margin-bottom:6px; }
+  .edu-card .inst{ color:var(--text-muted); font-size:14px; }
+  .edu-card .yr{ font-family:'JetBrains Mono', monospace; color:var(--green); font-size:13px; }
+
+  /* ---------- PROJECTS / DEPLOY ---------- */
+  .deploy-card{
+    background:var(--panel); border:1px dashed var(--border-strong);
+    border-radius:6px; padding:34px; text-align:center;
+  }
+  .deploy-card .dc-title{
+    font-family:'Chakra Petch', sans-serif; font-size:18px; font-weight:600; margin-bottom:10px;
+  }
+  .deploy-card p{ color:var(--text-muted); font-size:14px; max-width:460px; margin:0 auto; }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:1px; background:var(--border); border:1px solid var(--border);
+    border-radius:6px; overflow:hidden;
+  }
+  .contact-port{
+    background:var(--panel); padding:24px; display:flex; flex-direction:column; gap:8px;
+    transition:background 0.2s ease;
+  }
+  .contact-port:hover{ background:var(--panel-alt); }
+  .contact-port .cp-label{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px;
+    letter-spacing:1px; text-transform:uppercase; color:var(--text-dim);
+  }
+  .contact-port .cp-value{ font-size:15px; font-weight:500; color:var(--text); word-break:break-word; }
+
+  footer{ padding:32px 0 60px; text-align:center; }
+  footer p{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-dim); }
+
+  @media (max-width:720px){
+    .telemetry{ grid-template-columns:repeat(2,1fr); }
+    .telemetry .cell:nth-child(2){ border-right:none; }
+    .telemetry .cell{ border-bottom:1px solid var(--border); }
+    .nav-links{ display:none; }
+    .hero{ padding-top:56px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-mark">KS</span> KAMALESH SHAW</div>
+    <div class="nav-links">
+      <a href="#profile">Profile</a>
+      <a href="#stack">Stack</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <span class="status-chip"><span class="dot"></span>ONLINE</span>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="scanline"></div>
+  <div class="wrap">
+    <div class="eyebrow">Frontend Systems // Bengaluru, India</div>
+    <h1>Kamalesh Shaw</h1>
+    <div class="role">Senior Software Engineer <span>/</span> Frontend Specialist</div>
+    <p class="lede">Building the interfaces that industrial, telecom, and enterprise systems run on — real-time dashboards, resilient component architecture, and teams that ship. React.js · Next.js · TypeScript · Redux.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contact">Get in touch →</a>
+      <a class="btn btn-ghost" href="https://github.com/kamalesh2110/" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/kamalesh2110/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+
+    <div class="telemetry">
+      <div class="cell">
+        <div class="value" data-count="6.6" data-decimals="1"><span class="unit">YRS</span></div>
+        <div class="label">Experience</div>
+      </div>
+      <div class="cell">
+        <div class="value" data-count="3"><span class="unit">FIRMS</span></div>
+        <div class="label">Quest · Calsoft · TCS</div>
+      </div>
+      <div class="cell">
+        <div class="value" data-count="5"><span class="unit">ENG</span></div>
+        <div class="label">Team Led</div>
+      </div>
+      <div class="cell">
+        <div class="value" data-count="6"><span class="unit">DOM</span></div>
+        <div class="label">Energy · Telecom · SAP</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="profile">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-index mono">01</span><span class="sec-title">Profile Summary</span><span class="sec-line"></span></div>
+    <div class="terminal">
+      <div class="bar"><span></span><span></span><span></span></div>
+      <p><b>6+ years</b> architecting and delivering scalable frontend solutions across Energy, Telecom, ERP, Supply Chain, and SAP ecosystems.</p>
+      <p>Expertise in <b>React.js, Next.js, TypeScript, Redux</b> — designing component-driven architectures, optimizing responsiveness, and shipping intuitive UX for large platforms.</p>
+      <p>Track record building <b>data-driven dashboards</b>, visualization platforms, and real-time monitoring applications that turn operational data into decisions.</p>
+      <p>Proven leadership: technical mentoring, code quality, architectural calls, and Agile delivery — coordinating dev teams and cross-functional stakeholders.</p>
+      <p>Adept at API-integrated applications, state management, and tight collaboration across frontend, backend, QA, and business teams.<span class="cursor"></span></p>
+    </div>
+  </div>
+</section>
+
+<section id="competencies">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-index mono">02</span><span class="sec-title">Core Competencies</span><span class="sec-line"></span></div>
+    <div class="tag-grid">
+      <span class="tag">Frontend Engineering</span>
+      <span class="tag">React Application Development</span>
+      <span class="tag">Web Application Development</span>
+      <span class="tag">Frontend Architecture</span>
+      <span class="tag">UI/UX Engineering</span>
+      <span class="tag">Component-Based Design</span>
+      <span class="tag">Performance Optimization</span>
+      <span class="tag">State Management</span>
+      <span class="tag">Dashboard &amp; Data Visualization</span>
+      <span class="tag">Cross-Functional Collaboration</span>
+      <span class="tag">Technical Leadership</span>
+      <span class="tag">Agile Software Delivery</span>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-index mono">03</span><span class="sec-title">Technical Stack</span><span class="sec-line"></span></div>
+    <div class="stack-grid">
+      <div class="stack-panel">
+        <h4>Languages</h4>
+        <ul><li>JavaScript</li><li>TypeScript</li></ul>
+      </div>
+      <div class="stack-panel">
+        <h4>Frontend &amp; UI</h4>
+        <ul><li>React.js</li><li>Next.js</li><li>Redux</li><li>HTML5 / CSS3</li><li>MUI</li><li>Tailwind CSS</li></ul>
+      </div>
+      <div class="stack-panel">
+        <h4>Backend &amp; APIs</h4>
+        <ul><li>Node.js</li><li>REST APIs</li><li>JSON</li><li>WebSockets</li><li>GraphQL</li></ul>
+      </div>
+      <div class="stack-panel">
+        <h4>Testing &amp; Security</h4>
+        <ul><li>Jest</li><li>React Testing Library</li><li>RBAC</li></ul>
+      </div>
+      <div class="stack-panel">
+        <h4>Platforms &amp; Tools</h4>
+        <ul><li>Git / GitLab</li><li>JIRA</li><li>SAP / SAP HEC / SAP HANA</li><li>Simnovator UE Simulator</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-index mono">04</span><span class="sec-title">Work Experience</span><span class="sec-line"></span></div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <span class="tl-role">Senior Software Engineer</span>
+          <span class="tl-date">NOV 2024 — PRESENT</span>
+        </div>
+        <div class="tl-company"><b>Quest Global</b>, Bangalore, India</div>
+        <div class="proj">
+          <div class="proj-head"><span class="proj-name">Project: ABB Pulp &amp; Paper</span></div>
+          <div class="proj-tech">React.js · Redux · TypeScript · REST APIs · GitLab · JIRA · Jest</div>
+          <ul>
+            <li>Developing and enhancing a React.js-based monitoring platform for industrial electrical assets — motors, drives, transformers, and control systems.</li>
+            <li>Leading a team of 5 software developers: task planning, technical reviews, mentoring, and delivery execution.</li>
+            <li>Building dashboards and data visualization components for equipment condition, performance indicators, system health, and anomaly detection.</li>
+            <li>Integrating backend services and diagnostic APIs for signal trends, historical records, and asset performance insights.</li>
+            <li>Implementing maintenance management — activity tracking, preventive planning, and automated reporting.</li>
+            <li>Collaborating with business, engineering, and QA teams in Agile environments to deliver scalable enterprise applications.</li>
+          </ul>
+          <div class="highlights">
+            <div class="h-label">Highlights</div>
+            <ul>
+              <li>Managed and coordinated a 5-member development team delivering critical industrial monitoring solutions for ABB's Pulp &amp; Paper division.</li>
+              <li>Implemented a comprehensive testing strategy that reduced bug reports.</li>
+              <li>Built a modular component library that accelerated development and improved consistency across applications.</li>
+              <li>Improved application performance, boosting user engagement and satisfaction.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <span class="tl-role">Development Engineer</span>
+          <span class="tl-date">APR 2023 — OCT 2024</span>
+        </div>
+        <div class="tl-company"><b>Calsoft</b>, Kolkata, India</div>
+        <div class="proj">
+          <div class="proj-head"><span class="proj-name">Project: Simnovus App Modernization</span></div>
+          <div class="proj-tech">React.js · Redux · Node.js · REST APIs · Git · JIRA · Jest · Tailwind CSS</div>
+          <ul>
+            <li>Contributed to modernizing telecom network validation solutions supporting advanced 4G and 5G testing environments.</li>
+            <li>Developed and executed test scenarios across multiple Radio Access Technologies (RATs) using the Simnovator UE Simulator platform.</li>
+            <li>Designed and managed validation frameworks assessing base station functionality, reliability, capacity, and network performance.</li>
+            <li>Analyzed network performance metrics — throughput, latency, signal quality, stability — for optimization and troubleshooting.</li>
+            <li>Built analytical dashboards and performance reports with engineering and quality teams to improve testing efficiency and reliability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <span class="tl-role">System Engineer</span>
+          <span class="tl-date">JAN 2020 — MAR 2023</span>
+        </div>
+        <div class="tl-company"><b>Tata Consultancy Services</b>, Bangalore, India</div>
+
+        <div class="proj">
+          <div class="proj-head">
+            <span class="proj-name">Project: MSC — Supply &amp; Warehouse Management</span>
+            <span class="proj-date">AUG 2022 — MAR 2023</span>
+          </div>
+          <div class="proj-tech">React.js · Redux · REST APIs · Git · JIRA</div>
+          <ul>
+            <li>Designed and developed responsive UIs for supply chain and warehouse management operations, improving usability and process efficiency.</li>
+            <li>Enhanced real-time dashboard performance through React.js optimizations for faster rendering of operational data.</li>
+            <li>Integrated business-critical modules supporting seamless warehouse activity and inventory workflows.</li>
+            <li>Worked with stakeholders to improve application responsiveness and user experience.</li>
+          </ul>
+          <div class="highlights">
+            <div class="h-label">Highlights</div>
+            <ul>
+              <li>Improved user task efficiency by 30% through intuitive interface enhancements.</li>
+              <li>Reduced form submission errors by 20% via improved workflow design and validation controls.</li>
+              <li>Decreased data rendering time by 50%, enhancing dashboard responsiveness for 10,000+ active users.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="proj-head">
+            <span class="proj-name">Project: SAP HECON</span>
+            <span class="proj-date">APR 2021 — APR 2022</span>
+          </div>
+          <div class="proj-tech">React.js · Redux · REST APIs · Git · JIRA</div>
+          <ul>
+            <li>Developed and supported a centralized project lifecycle management platform for Home Environment Control (HEC) solutions.</li>
+            <li>Built project tracking capabilities for visibility into implementation progress, delivery milestones, and performance.</li>
+            <li>Implemented billing, invoice management, resource allocation, and leave management functionality.</li>
+            <li>Created user-centric web interfaces integrating APIs and backend services to enhance usability and data exchange.</li>
+            <li>Collaborated cross-functionally in Agile environments to deliver scalable, business-aligned solutions.</li>
+          </ul>
+        </div>
+
+        <div class="proj">
+          <div class="proj-head">
+            <span class="proj-name">Project: SAP HEC</span>
+            <span class="proj-date">JAN 2020 — MAR 2021</span>
+          </div>
+          <div class="proj-tech">SAP · SAP HEC · SAP HANA</div>
+          <ul>
+            <li>Supported customization and deployment of SAP infrastructure — SAP Web Dispatcher, SAP Cloud Connector, and SAP HANA environments.</li>
+            <li>Collaborated with technical teams to optimize system performance, scalability, and security configurations.</li>
+            <li>Performed post-build validation, QA, and deployment readiness assessments.</li>
+            <li>Executed functional, performance, and security testing; resolved deployment and configuration issues.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-index mono">05</span><span class="sec-title">Featured Project</span><span class="sec-line"></span></div>
+    <div class="deploy-card">
+      <div class="dc-title mono">// AWAITING DEPLOYMENT LINK</div>
+      <p>Share the live URL of the app you built and deployed, and it'll be wired in right here as a full case-study card — screenshot, tech stack, and a "Launch app" button.</p>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-index mono">06</span><span class="sec-title">Education</span><span class="sec-line"></span></div>
+    <div class="edu-card">
+      <div>
+        <div class="deg">B.Tech, Computer Science &amp; Engineering</div>
+        <div class="inst">Future Institute of Engineering and Management, Kolkata, India</div>
+      </div>
+      <div class="yr">2015 — 2019</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-bottom:none;">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="sec-index mono">07</span><span class="sec-title">Contact</span><span class="sec-line"></span></div>
+    <div class="contact-grid">
+      <a class="contact-port" href="mailto:kamalesh2110@gmail.com">
+        <span class="cp-label">Email</span>
+        <span class="cp-value">kamalesh2110@gmail.com</span>
+      </a>
+      <a class="contact-port" href="tel:+918981094157">
+        <span class="cp-label">Phone</span>
+        <span class="cp-value">+91 89810 94157</span>
+      </a>
+      <div class="contact-port">
+        <span class="cp-label">Location</span>
+        <span class="cp-value">Bengaluru, Karnataka, India</span>
+      </div>
+      <a class="contact-port" href="https://github.com/kamalesh2110/" target="_blank" rel="noopener">
+        <span class="cp-label">GitHub</span>
+        <span class="cp-value">github.com/kamalesh2110</span>
+      </a>
+      <a class="contact-port" href="https://www.linkedin.com/in/kamalesh2110/" target="_blank" rel="noopener">
+        <span class="cp-label">LinkedIn</span>
+        <span class="cp-value">linkedin.com/in/kamalesh2110</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>KAMALESH SHAW // SYSTEM STATUS: ONLINE // BUILT WITH REACT-GRADE ATTENTION TO DETAIL</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.12 });
+  revealEls.forEach(el=>io.observe(el));
+
+  // Count-up telemetry values
+  const counters = document.querySelectorAll('.telemetry .value');
+  const animateCount = (el)=>{
+    const target = parseFloat(el.getAttribute('data-count'));
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0');
+    const unit = el.querySelector('.unit');
+    let current = 0;
+    const duration = 1200;
+    const start = performance.now();
+    const step = (now)=>{
+      const p = Math.min((now-start)/duration, 1);
+      current = target * p;
+      el.childNodes[0].nodeValue = current.toFixed(decimals);
+      if(p < 1){ requestAnimationFrame(step); }
+      else { el.childNodes[0].nodeValue = target.toFixed(decimals); }
+    };
+    requestAnimationFrame(step);
+  };
+  const counterIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ animateCount(e.target); counterIO.unobserve(e.target); }
+    });
+  }, { threshold:0.4 });
+  counters.forEach(c=>counterIO.observe(c));
+</script>
+
+</body>
+</html>
