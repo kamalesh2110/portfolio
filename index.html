@@ -406,6 +406,27 @@
   }
   .deploy-card p{ color:var(--text-muted); font-size:14px; max-width:460px; margin:0 auto; }
 
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:16px;
+  }
+  .proj-card{
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:6px; padding:22px 24px;
+    display:flex; flex-direction:column; gap:12px;
+    transition:border-color 0.2s ease, transform 0.2s ease;
+  }
+  .proj-card:hover{ border-color:var(--green); transform:translateY(-2px); }
+  .proj-card-top{ display:flex; flex-direction:column; gap:6px; }
+  .proj-card .proj-name{ font-family:'Chakra Petch', sans-serif; font-size:17px; font-weight:600; }
+  .proj-card .proj-tech{
+    font-family:'JetBrains Mono', monospace; font-size:11px;
+    color:var(--green); letter-spacing:0.4px;
+  }
+  .proj-desc{ color:var(--text-muted); font-size:14px; flex:1; }
+  .proj-launch{ align-self:flex-start; margin-top:4px; }
+
   /* ---------- CONTACT / FOOTER ---------- */
   .contact-grid{
     display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
@@ -674,10 +695,48 @@
 
 <section id="projects">
   <div class="wrap reveal">
-    <div class="sec-head"><span class="sec-index mono">05</span><span class="sec-title">Featured Project</span><span class="sec-line"></span></div>
-    <div class="deploy-card">
-      <div class="dc-title mono">// AWAITING DEPLOYMENT LINK</div>
-      <p>Share the live URL of the app you built and deployed, and it'll be wired in right here as a full case-study card — screenshot, tech stack, and a "Launch app" button.</p>
+    <div class="sec-head"><span class="sec-index mono">05</span><span class="sec-title">Projects</span><span class="sec-line"></span></div>
+    <div class="project-grid">
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <span class="proj-name">Photo to PDF Studio</span>
+          <span class="proj-tech">React.js</span>
+        </div>
+        <p class="proj-desc">Converts photos into PDF documents — upload, arrange, and export in one flow.</p>
+        <a class="btn btn-primary proj-launch" href="https://photo-to-pdf-studio.onrender.com/" target="_blank" rel="noopener">Launch app →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <span class="proj-name">Kasamoke Unlocker</span>
+          <span class="proj-tech">React.js</span>
+        </div>
+        <p class="proj-desc">A web utility built with React.js. (Swap in the real one-line description.)</p>
+        <a class="btn btn-primary proj-launch" href="https://kasamoke-unlocker.onrender.com" target="_blank" rel="noopener">Launch app →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <span class="proj-name">World Weather</span>
+          <span class="proj-tech">React.js</span>
+        </div>
+        <p class="proj-desc">Real-time weather lookup — current conditions and forecast by location.</p>
+        <a class="btn btn-primary proj-launch" href="https://world-weather-brown.vercel.app/" target="_blank" rel="noopener">Launch app →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <span class="proj-name">PhotoTool</span>
+          <span class="proj-tech">React.js</span>
+        </div>
+        <p class="proj-desc">A browser-based photo editing utility. (Swap in the real one-line description.)</p>
+        <a class="btn btn-primary proj-launch" href="https://phototool-1aum.onrender.com/" target="_blank" rel="noopener">Launch app →</a>
+      </div>
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <span class="proj-name">ResumAI Studio</span>
+          <span class="proj-tech">React.js</span>
+        </div>
+        <p class="proj-desc">AI-assisted resume builder — generate and polish resumes in the browser.</p>
+        <a class="btn btn-primary proj-launch" href="https://resumai-studio.onrender.com" target="_blank" rel="noopener">Launch app →</a>
+      </div>
     </div>
   </div>
 </section>
